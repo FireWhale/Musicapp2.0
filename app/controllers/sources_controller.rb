@@ -3,7 +3,7 @@ class SourcesController < ApplicationController
   # GET /sources.json
   def index
     @sources = Source.all
-
+    @sourcessorted = @sources.sort! { |a,b| a.name.downcase <=> b.name.downcase }
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @sources }
@@ -14,7 +14,8 @@ class SourcesController < ApplicationController
   # GET /sources/1.json
   def show
     @source = Source.find(params[:id])
-
+    @albums = @source.albums
+  
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @source }

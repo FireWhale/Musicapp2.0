@@ -16,7 +16,11 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :releasedate %><br />
+    <%= f.label :catalognumber, "Catalog Number"%><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :releasedate, "Release Date" %><br />
     <%= f.date_select :releasedate, :start_year => 1970 %>
   </div>
   <div class="field">
@@ -28,13 +32,13 @@
     <%= f.text_field :publisher %>
   </div>
   <div class="field">
-  	<%= f.label :reference %>
+  	<%= f.label :reference %><br />
     <%= f.text_field :reference %>
   </div>
   <%= render 'add_artist_form' %>
   <%= render 'add_source_form' %>	
   <div class="field">
-    <%= f.label :albumobtained %><br />
+    <%= f.label :albumobtained, "Album Obtained" %><br />
     <%= f.check_box :albumobtained %>
   </div>
   <div class="actions">

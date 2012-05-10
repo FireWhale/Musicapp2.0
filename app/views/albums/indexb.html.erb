@@ -1,7 +1,7 @@
-<h1>All Albums (By Name)</h1>
-<% provide(:title, 'All Albums') %>
+<h1>All Albums (By Date)</h1>
+<% provide(:title, 'Newest Albums') %>
 
-<%= link_to ("Sort by Release date", albums2_path)%>
+<%= link_to ("Sort by Name", albums_path)%>
 
 <table>
   <tr>
@@ -12,7 +12,7 @@
     <th>Albumobtained</th>
   </tr>
 
-<% @sorted.each do |each| %>
+<% @sortedbydate.each do |each| %>
   <tr>
     <td><%= link_to each.name, each %></td>
     <td><%= each.releasedate %></td>

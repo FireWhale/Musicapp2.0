@@ -3,6 +3,7 @@ class ArtistsController < ApplicationController
   # GET /artists.json
   def index
     @artists = Artist.all
+    @sorted = @artists.sort! { |a,b| a.name.downcase <=> b.name.downcase }
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +15,18 @@ class ArtistsController < ApplicationController
   # GET /artists/1.json
   def show
     @artist = Artist.find(params[:id])
-
+    @albums = @artist.albums
+    @aliases = @artist.aliases #For Showing Aliases
+    @parentalias = Alias.find_by_alias_id(@artist.id) #For showing Parents
+    if @parentalias.nil? == false
+      @parent = Artist.find_by_id(@parentalias[:parent_id])
+    end 
+    @members = @artist.units
+    @unitmember = Unit.find_by_member_id(@artist.id) #For Showing Units
+    if @unitmember.nil? == false
+      @unit = Artist.find_by_id(@unitmember[:unit_id])
+    end
+       
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @artist }
@@ -35,6 +47,8 @@ class ArtistsController < ApplicationController
   # GET /artists/1/edit
   def edit
     @artist = Artist.find(params[:id])
+    @aliases = @artist.aliases
+    @members = @artist.units
   end
 
   # POST /artists
@@ -57,6 +71,42 @@ class ArtistsController < ApplicationController
   # PUT /artists/1.json
   def update
     @artist = Artist.find(params[:id])
+    #Deleting an Alias Association
+    @aliasesdup = @artist.aliases.dup
+    @aliasesdup.each do |each|
+      @existence = Artist.find_by_id(each.alias_id).name
+      if params[@existence] == "0"
+        @aliasdel = Alias.find_by_alias_id(each.alias_id)
+        @aliasdel.delete.save
+      end
+    end
+    #Creating An Alias Association
+    if params[:alias][:name].to_s.empty? == false
+      @alias = Artist.find_by_name(params[:alias][:name])
+      if @alias.nil? == false
+      @artist.aliases.build(:alias_id => @alias.id).save
+      else
+        flash[:success] = "Alias Association Failed! Could not find artist to associate"
+      end
+    end
+    #Deleting an Alias Association
+    @unitsdup = @artist.units.dup
+    @unitsdup.each do |each|
+      @existence = Artist.find_by_id(each.member_id).name
+      if params[@existence] == "0"
+        @memberdel = Unit.find_by_member_id(each.member_id)
+        @memberdel.delete.save
+      end
+    end
+    #Creating An Alias Association
+    if params[:member][:name].to_s.empty? == false
+      @member = Artist.find_by_name(params[:member][:name])
+      if @member.nil? == false
+      @artist.units.build(:member_id => @member.id).save
+      else
+        flash[:success] = "Alias Association Failed! Could not find artist to associate"
+      end
+    end
 
     respond_to do |format|
       if @artist.update_attributes(params[:artist])

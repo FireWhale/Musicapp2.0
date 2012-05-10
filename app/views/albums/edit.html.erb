@@ -1,6 +1,65 @@
 <h1>Editing album</h1>
 
-<%= render 'form' %>
+<%= form_for(@album) do |f| %>
+  <% if @album.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
 
-<%= link_to 'Show', @album %> |
-<%= link_to 'Back', albums_path %>
+      <ul>
+      <% @album.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :catalognumber, "Catalog Number"%><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :releasedate, "Release Date" %><br />
+    <%= f.date_select :releasedate, :start_year => 1970 %>
+  </div>
+  <div class="field">
+    <%= f.label :genre %><br />
+    <%= f.text_field :genre %>
+  </div>
+  <div class="field">
+    <%= f.label :publisher %><br />
+    <%= f.text_field :publisher %>
+  </div>
+  <div class="field">
+  	<%= f.label :reference %><br />
+    <%= f.text_field :reference %>
+  </div>
+  Artist(s) (uncheck to remove):	
+  <% @artists.each do |each| %>
+	<div class="field">
+		<%= each.name %>
+		<%= hidden_field_tag each.name, 0 %>
+		<%= check_box_tag each.name, 1, true  %>
+	</div>
+  <% end %>	  
+  <%= render 'add_artist_form' %>
+  Source(s) (uncheck to remove):
+  <% @sources.each do |each| %>
+	<div class="field">
+		<%= each.name %>
+		<%= hidden_field_tag each.name, 0 %>
+		<%= check_box_tag each.name, 1, true  %>
+	</div>
+  <% end %>
+  <%= render 'add_source_form' %>	
+  <div class="field">
+    <%= f.label :albumobtained, "Album Obtained" %><br />
+    <%= f.check_box :albumobtained %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

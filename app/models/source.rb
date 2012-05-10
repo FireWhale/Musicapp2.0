@@ -1,3 +1,7 @@
 class Source < ActiveRecord::Base
-  attr_accessible :activity, :name, :obtained
+  attr_accessible :name, :activity, :obtained, :reference
+  
+  has_and_belongs_to_many :albums
+    
+  validates:name, :presence => true, :uniqueness => true
 end

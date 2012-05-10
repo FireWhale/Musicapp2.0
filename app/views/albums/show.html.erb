@@ -7,9 +7,17 @@
 </p>
 
 <p>
-  <b>Releasedate:</b>
+  <b>Catalog Number:</b>
+  <%= @album.catalognumber %>
+</p>
+
+<%= link_to 'Edit', edit_album_path(@album) %>
+
+<p>
+  <b>Release date:</b>
   <%= @album.releasedate %>
 </p>
+
 
 <p>
   <b>Genre:</b>
@@ -22,10 +30,24 @@
 </p>
 
 <p>
-  <b>Albumobtained:</b>
+  <b>Reference:</b>
+  <%= link_to @album.reference, @album.reference %>
+</p>
+
+<p>
+  <b>Album obtained:</b>
   <%= @album.albumobtained %>
 </p>
 
-
-<%= link_to 'Edit', edit_album_path(@album) %> |
-<%= link_to 'Back', albums_path %>
+<p>
+	<b>Artist(s):</b></br>
+		<% @artists.each do |each| %>
+				<%= link_to each.name, artist_path(each) %></br>
+		<% end %>
+</p>
+<p>
+	<b>Source(s):</b></br>
+		<% @sources.each do |each| %>
+				<%= link_to each.name, source_path(each) %></br>
+		<% end %>
+</p>

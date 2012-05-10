@@ -12,6 +12,7 @@ MusicApp20::Application.routes.draw do
   match '/addartist', :to => 'artists#new'
   match '/addsource', :to => 'sources#new'
   match '/editalbum', :to => 'albums#edit'
+  match '/albums2', :to => 'albums#indexb'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,6 +1,56 @@
 <h1>Editing artist</h1>
 
-<%= render 'form' %>
+<%= form_for(@artist) do |f| %>
+  <% if @artist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@artist.errors.count, "error") %> prohibited this artist from being saved:</h2>
 
-<%= link_to 'Show', @artist %> |
-<%= link_to 'Back', artists_path %>
+      <ul>
+      <% @artist.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>  
+  <div class="field">
+    <%= f.label :reference %><br />
+    <%= f.text_field :reference %>
+  </div>
+  <div class="field">
+    <%= f.label :activity %><br />
+    <%= f.text_field :activity %>
+  </div>
+  <div class="field">
+    <%= f.label :obtained %><br />
+    <%= f.check_box :obtained %>
+  </div>
+	<% if @aliases.empty? == false %>
+		Alias(es) (uncheck to remove):
+		<% @aliases.each do |each| %>
+			<% @artistalias = Artist.find_by_id(each.alias_id) %>
+			<p>	<%= @artistalias.name %>
+			<%= hidden_field_tag @artistalias.name, 0 %>
+			<%= check_box_tag @artistalias.name, 1, true  %>
+		<% end %>
+	<% end %>  
+	<%= render 'add_alias_form' %>
+	<% if @members.empty? == false %>
+		Member(s) of this Unit (uncheck to remove):
+		<% @members.each do |each| %>
+			<% @artistmember = Artist.find_by_id(each.member_id) %>
+			<p>	<%= @artistmember.name %>
+			<%= hidden_field_tag @artistmember.name, 0 %>
+			<%= check_box_tag @artistmember.name, 1, true  %>
+		<% end %>
+	<% end %>  
+	<%= render 'add_member_form' %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+

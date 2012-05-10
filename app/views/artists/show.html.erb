@@ -5,6 +5,40 @@
   <%= @artist.name %>
 </p>
 
+<%= link_to 'Edit', edit_artist_path(@artist) %><hr>
+
+<% if @parentalias.nil? == false %>
+	<p>
+ 	  Alias of <%= link_to @parent.name, artist_path(@parent.id) %> 
+	</p><hr>
+<% end %>
+
+<% if @aliases.empty? == false %>
+	Alias(es):
+	<% @aliases.each do |each| %>
+		<% @artistalias = Artist.find_by_id(each.alias_id) %>
+		<p>	<%= link_to @artistalias.name, artist_path(@artistalias.id) %>	</p>
+	<% end %><hr>
+<% end %>
+
+<% if @unitmember.nil? == false %>
+	<p>
+		Member of <%= link_to @unit.name, artist_path(@unit.id)%>
+	</p><hr>
+<% end %>
+<% if @members.empty? == false %>
+	Member(s):
+	<% @members.each do |each| %>
+		<% @artistmember = Artist.find_by_id(each.member_id) %>
+		<p>	<%= link_to @artistmember.name, artist_path(@artistmember.id) %>	</p>
+	<% end %><hr>
+<% end %>
+
+<p>
+	<b>Reference:</b>
+	<%= @artist.reference %>
+</p>
+
 <p>
   <b>Activity:</b>
   <%= @artist.activity %>
@@ -14,7 +48,13 @@
   <b>Obtained:</b>
   <%= @artist.obtained %>
 </p>
+<hr>
+<b>Album(s):</b></br>
+<% @albums.each do |each| %>
+	<%= link_to each.name, album_path(each) %></br>
+<% end %><hr>
+		
+<%= link_to "delete artist?", @artist, :method => :delete, :confirm => "You sure?"%>
 
 
-<%= link_to 'Edit', edit_artist_path(@artist) %> |
-<%= link_to 'Back', artists_path %>
+
