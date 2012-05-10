@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+<% provide(:title, @album.name) %>
+
+<p>
+  <b>Name:</b>
+  <%= @album.name %>
+</p>
+
+<p>
+  <b>Releasedate:</b>
+  <%= @album.releasedate %>
+</p>
+
+<p>
+  <b>Genre:</b>
+  <%= @album.genre %>
+</p>
+
+<p>
+  <b>Publisher:</b>
+  <%= @album.publisher %>
+</p>
+
+<p>
+  <b>Albumobtained:</b>
+  <%= @album.albumobtained %>
+</p>
+
+
+<%= link_to 'Edit', edit_album_path(@album) %> |
+<%= link_to 'Back', albums_path %>

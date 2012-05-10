@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  releasedate: 2012-05-08
+  genre: MyString
+  publisher: MyString
+  albumobtained: false
+
+two:
+  name: MyString
+  releasedate: 2012-05-08
+  genre: MyString
+  publisher: MyString
+  albumobtained: false

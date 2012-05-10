@@ -1,0 +1,31 @@
+<h1>All Albums</h1>
+<% provide(:title, 'All Albums') %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Releasedate</th>
+    <th>Genre</th>
+    <th>Publisher</th>
+    <th>Albumobtained</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @albums.each do |each| %>
+  <tr>
+    <td><%= link_to each.name, each %></td>
+    <td><%= each.releasedate %></td>
+    <td><%= each.genre %></td>
+    <td><%= each.publisher %></td>
+    <td><%= each.albumobtained %></td>
+    <td><%= link_to 'Edit', edit_album_path(each) %></td>
+    <td><%= link_to 'Destroy', each, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Album', new_album_path %>
