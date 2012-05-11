@@ -14,28 +14,31 @@ Will need to have several attributes:
 	Date Released
 	Genre
 	Publisher
-	Album obtained?
-	more?
+	Album obtained
+	Reference
+	Catalog Number
 	
 -----Artist and Series Overview-----
 Will need to be able to keep track of artists and series
 Will also need to have several attributes:
 	Name
-	Still active? 
-
+	Activity
+	Obtained
+	Reference
 
 -----Relationships------
-If all albums under an artist are obtained, then artist: obtained
-
+Album-Artist
+Album-Source
+Artists: Aliases
+Artists: Units
 
 -----Database Viewing-----
-Gotta Learn HTML to properly display information
-	Display as an Artist Tree
-		Display when an artist was last updated and if I am up to date on it.
-	Display as a Source Tree
-		Display when a source was last updated and if I am up to date on it.
-	Display by dates 
-	Display by Obtained
+Display as an Artist Tree
+	Display when an artist was last updated and if I am up to date on it.
+Display as a Source Tree
+	Display when a source was last updated and if I am up to date on it.
+Display by dates 
+Display by Obtained
 Ability to add an album under an artist/source
 Color Coding? 
 Interactive trees?
@@ -47,6 +50,8 @@ From:
 	VGMDB
 	Generasia
 	Animenfo
+	Nipponsei
+	Anime-Sharing
 
 -----Tasks-----
 1. Basic Tasks
@@ -58,87 +63,85 @@ From:
 			a. Artistship, Sourceship				DONE
 			b. Aliases, Units						DONE
 		5. Move Over Database						DONE
-	b. Framework
-		1. Add in/Fix Stylesheets					DONE
-		2. General Views
+	b. Website Design								DONE
+		1. SASS/CSS Stylesheets						DONE
+		2. General Views							DONE
 			a. Application							DONE
 			b. Helpers								DONE
 			c. Header/Footer						DONE
+			d. Home									DONE
 		3. Routing									DONE
 			a. Routes.rb							DONE
-	c. Controller/Model Views
-		1. Album
+	c. Controller/Model Views						DONE
+		1. Album									DONE
 			a. Show									DONE
 			b. New/Create							DONE
 			c. Edit/Update							DONE
 			d. Index								DONE
 			e. Deleting								DONE
-		2. Artist
+		2. Artist									DONE
 			a. Show									DONE
 			b. New/Create							DONE
 			c. Edit/Update							DONE
 			d. Index								DONE
 			e. Deleting								DONE
-		3. Sources
+		3. Sources									DONE
 			a. Show									DONE
 			b. New/Create							DONE
 			c. Edit/Update							DONE
 			d. Index								DONE
 			e. Deleting								DONE
-	d. Auxilery Views
-		1. Home										DONE
-		2. Header									DONE
-		3. Footer									DONE
-2. Advanced Tasks
-	b. Model Views
-		1. Album
-			a. Index
-				1. Alphabitized (A B C D etc.) view DONE
-				2. View ALL albums					DONE
+2. Programming Tasks
+	a. Activity/Obtained Functionality
+	b. Add in Users?								REJECTED
+	c. Indices			
+	d. Viewer-Friendly Deployment
+	e. Automated Parsing
+3. Design Tasks											
+	a. Relationship functionality into views 			DONE
+		1. Artist-Album									DONE
+		2. Source-Album Functionality					DONE
+		3. Alias Functionality							DONE
+		4. Unit Functionality							DONE
+	b. Model Views										
+		1. Album										
+			a. Index									
+				1. Sorted Index (by name and by date)	DONE
+				2. Index Pagination by Alphabet 		
+				3. Set Paginated View as default
+				4. Index pagination by Date?
+				5. Recently Added Index
+				6. Obtained Images
 			b. Show
-				1. Edit button on the right			
-				2. Images
-				3. Pluralize Artists
-			c. New/Create
-				1. Add another Artist field button
-			d. Edit/Update
-				1. fix the deleting artists bug
-				2. Add another Artist field button
-			e. Destroy
-				1. Create form to implement
+				1. Design how it'll look 
+				2. Implement Design
+				3. Images?
+			c. New/Create/Edit/Update
+				1. Javascript functionality
 		2. Artist/Source
 			a. Index
-				1. Alphabitized view + links		DONE
-				2. View all Artists/Sources
-				3. small icon on the right to signify status?
+				1. Sorted Index (by name)				DONE
+				2. Index Pagination by Alphabet
+				3. Obtained/Activity Statuses
 			b. Show
-				1. Formating! (space between Album(s):  and Add an Album!)
-				2. Show Albums for aliases
-			c. New/Create
-				1. Add in album? Maybe?
-			d. Edit/Update
-				1.
-		3. Activity/Obtained Theory
-			a. Activity
-				1. Use a drop-down menu
-			b. Obtained is boolean
-				1. Have it set using album data
-			c. maybe need another attribute: date last modified?
+				1. Design how it will look
+				2. Implement Add Album js
+				3. Show albums for aliases
+				4. Arists under Source/Vice Versa
+			c. New/Create/Edit/Update
+				1. Alias/Unit js functionality
+4. Database Tasks
+	a. Create unit/alias Associations
+	b. Catalog Numbers			
+			
+Notes.
+Activity/Obtained Theory
+	a. Activity
+		1. Use a drop-down menu
+	b. Obtained is boolean
+		1. Have it set using album data
+	c. maybe need another attribute: date last modified?
 		
-3. Misc.
-	a. Add in Obtained Functionality
-	b. Add in a list of artists under a source?
-	c. Add in a list of sources under an artist?
-	d. Add in Users?										REJECTED
-	e. Artists owning other artists (aliases, etc.) 		
-	f. Add in a "Recently added" Page
-	g. Add indices to database
-	h. Add in artists part of units/groups?
-	i. Sort by Release date View
-	j. Add in a User Friendly View for deployment
-	k. Add in Catalog Numbers
-		1. Add in Program to parse VGMDB and add in to db
-
 
 
 

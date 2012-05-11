@@ -3,20 +3,4 @@
 
 <%= link_to ("Sort by Name", albums_path)%>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Release Date</th>
-    <th>Album Obtained?</th>
-  </tr>
-
-<% @sortedbydate.each do |each| %>
-  <tr>
-    <td><%= link_to each.name, each %></td>
-    <td><%= each.releasedate %></td>
-    <td><%= each.albumobtained %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
+<%= render 'index_form' %>

@@ -13,7 +13,7 @@ class AlbumsController < ApplicationController
   
   def indexb
     @albums = Album.all
-    @sortedbydate = @albums.sort! { |a,b| b.releasedate <=> a.releasedate }
+    @sorted = @albums.sort! { |a,b| b.releasedate <=> a.releasedate }
     
     respond_to do |format|
       format.html # index.html.erb
