@@ -25,10 +25,6 @@
     <%= f.label :activity %><br />
     <%= f.text_field :activity %>
   </div>
-  <div class="field">
-    <%= f.label :obtained %><br />
-    <%= f.check_box :obtained %>
-  </div>
 	<% if @aliases.empty? == false %>
 		Alias(es) (uncheck to remove):
 		<% @aliases.each do |each| %>

@@ -1,10 +1,11 @@
-<h1>All Artists</h1>
+<h1>All Artists (<%= @artists.count %>)</h1>
 
 <table>
   <tr>
     <th>Name</th>
     <th>Activity</th>
     <th>Obtained</th>
+    <th>Reference</th>    
   </tr>
 
 <% @artists.each do |artist| %>
@@ -12,6 +13,9 @@
     <td><%= link_to artist.name, artist %></td>
     <td><%= artist.activity %></td>
     <td><%= artist.obtained %></td>
+    <% if artist.reference.nil? == false %>
+    <td><%= link_to artist.reference, artist.reference %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

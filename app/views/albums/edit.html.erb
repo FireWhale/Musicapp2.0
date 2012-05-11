@@ -1,4 +1,4 @@
-<h1>Editing album</h1>
+<h1>Editing album: <%= @album.name %></h1>
 
 <%= form_for(@album) do |f| %>
   <% if @album.errors.any? %>
@@ -19,7 +19,7 @@
   </div>
   <div class="field">
     <%= f.label :catalognumber, "Catalog Number"%><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :catalognumber %>
   </div>
   <div class="field">
     <%= f.label :releasedate, "Release Date" %><br />

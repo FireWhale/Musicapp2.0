@@ -33,12 +33,12 @@
 		<p>	<%= link_to @artistmember.name, artist_path(@artistmember.id) %>	</p>
 	<% end %><hr>
 <% end %>
-
+<% if @artist.reference.nil? == false %>
 <p>
 	<b>Reference:</b>
-	<%= @artist.reference %>
+	<%= link_to @artist.reference, @artist.reference %>
 </p>
-
+<% end %>
 <p>
   <b>Activity:</b>
   <%= @artist.activity %>

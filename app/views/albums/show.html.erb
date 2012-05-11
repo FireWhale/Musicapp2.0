@@ -11,6 +11,11 @@
   <%= @album.catalognumber %>
 </p>
 
+<p>
+  <b>Album obtained:</b>
+  <%= @album.albumobtained %>
+</p>
+
 <%= link_to 'Edit', edit_album_path(@album) %>
 
 <p>
@@ -35,11 +40,6 @@
 </p>
 
 <p>
-  <b>Album obtained:</b>
-  <%= @album.albumobtained %>
-</p>
-
-<p>
 	<b>Artist(s):</b></br>
 		<% @artists.each do |each| %>
 				<%= link_to each.name, artist_path(each) %></br>
@@ -50,4 +50,6 @@
 		<% @sources.each do |each| %>
 				<%= link_to each.name, source_path(each) %></br>
 		<% end %>
-</p>
+</p><hr>
+
+<%= link_to "Delete Album?", @album, :method => :delete, :confirm => "You sure?"%>

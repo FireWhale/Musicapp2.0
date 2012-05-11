@@ -1,4 +1,4 @@
-<h1>All Albums (By Name)</h1>
+<h1>All Albums (By Name) (<%= @albums.count %>)</h1>
 <% provide(:title, 'All Albums') %>
 
 <%= link_to ("Sort by Release date", albums2_path)%>
@@ -6,18 +6,14 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Releasedate</th>
-    <th>Genre</th>
-    <th>Publisher</th>
-    <th>Albumobtained</th>
+    <th>Release Date</th>
+    <th>Album obtained?</th>
   </tr>
 
 <% @sorted.each do |each| %>
   <tr>
     <td><%= link_to each.name, each %></td>
     <td><%= each.releasedate %></td>
-    <td><%= each.genre %></td>
-    <td><%= each.publisher %></td>
     <td><%= each.albumobtained %></td>
   </tr>
 <% end %>
