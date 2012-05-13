@@ -16,11 +16,13 @@ class ArtistsController < ApplicationController
   def show
     @artist = Artist.find(params[:id])
     @albums = @artist.albums
-    @aliases = @artist.aliases #For Showing Aliases
+    #For Showing Aliases
+    @aliases = @artist.aliases
     @parentalias = Alias.find_by_alias_id(@artist.id) #For showing Parents
     if @parentalias.nil? == false
       @parent = Artist.find_by_id(@parentalias[:parent_id])
     end 
+    #For Showing Units
     @members = @artist.units
     @unitmember = Unit.find_by_member_id(@artist.id) #For Showing Units
     if @unitmember.nil? == false
@@ -33,6 +35,7 @@ class ArtistsController < ApplicationController
         @artist.obtained = false
       end
     end
+    #For adding an Album under an Artist
     @album = Album.new
        
     respond_to do |format|

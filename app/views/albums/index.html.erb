@@ -1,7 +1,16 @@
-<h1>All Albums (By Name) (<%= @albums.count %>)</h1>
-<% provide(:title, 'All Albums') %>
+<header>
+	<nav>
+<%= if params[:sort] != "releasedate"
+		link_to ("Sort by Release date", albums_path(:sort => "releasedate"))
+  	end %>
+<%= if params[:sort] != "name"
+		link_to ("Sort by Name", albums_path(:sort => "name"))
+  	end %>
+  	</nav>
+</header>
 
-<%= link_to ("Sort by Release date", albums_path(:sort => "releasedate"))%>
+<h1>All Albums (By <%= @title %>) (<%= @albums.count %>)</h1>
+<% provide(:title, 'All Albums') %>
 
 <table id="AlbumTable">
   <tr>
@@ -21,5 +30,4 @@
 	<% end %>
   </tr>
 <% end %>
-</table>
-<br />
+</table></br>
