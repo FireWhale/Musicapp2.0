@@ -26,10 +26,19 @@ class ArtistsController < ApplicationController
     if @unitmember.nil? == false
       @unit = Artist.find_by_id(@unitmember[:unit_id])
     end
+    #Code for Obtained Functionality
+    @artist.obtained = true
+    @albums.each do |each|
+      if each.albumobtained == false
+        @artist.obtained = false
+      end
+    end
+    @album = Album.new
        
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @artist }
+      format.js
     end
   end
 
@@ -130,4 +139,12 @@ class ArtistsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def CreateAlbum
+    @album = Album.new
+    render 'form'
+    respond_to do |format|
+      format.js
+    end
+  end  
 end

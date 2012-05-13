@@ -1,6 +1,25 @@
 <h1>All Albums (By Name) (<%= @albums.count %>)</h1>
 <% provide(:title, 'All Albums') %>
 
-<%= link_to ("Sort by Release date", albums2_path)%>
+<%= link_to ("Sort by Release date", albums_path(:sort => "releasedate"))%>
 
-<%= render 'index_form' %>
+<table id="AlbumTable">
+  <tr>
+    <th>Name</th>
+    <th>Release Date</th>
+    <th>Album Obtained?</th>
+  </tr>
+
+<% @sorted.each do |each| %>
+  <tr>
+    <td><%= link_to each.name, each %></td>
+    <td><%= each.releasedate %></td>
+	<% if each.albumobtained == true%>
+		<td><%= image_tag("tick.png") %></td>
+	<% else %>
+		<td><%= image_tag("cross.png")%></td>
+	<% end %>
+  </tr>
+<% end %>
+</table>
+<br />

@@ -21,9 +21,18 @@
 </p>
 
 <b>Album(s):</b></br>
-<% @albums.each do |each| %>
-	<%= link_to each.name, album_path(each) %> </br>
-<% end %><hr>
+<table>
+	<% @albums.each do |each| %>
+	<tr>
+		<td><%= link_to each.name, album_path(each) %></td>
+		<% if each.albumobtained == true%>
+			<td><%= image_tag("tick.png") %></td>
+		<% else %>
+			<td><%= image_tag("cross.png")%></td>
+		<% end %>
+	</tr>
+	<% end %>
+</table><hr>
 		
 
 <%= link_to "Delete Source?", @source, :method => :delete, :confirm => "You sure?" %>

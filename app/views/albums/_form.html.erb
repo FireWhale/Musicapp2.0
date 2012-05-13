@@ -1,4 +1,8 @@
-<%= form_for(@album) do |f| %>
+<% if @albumformdisplay.nil?
+	@albumformdisplay = "true"
+end
+%>
+<%= form_for(@album, :html => {:style => "display: " + @albumformdisplay}, :id=>"AddAlbumForm") do |f| %>
   <% if @album.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
@@ -35,8 +39,10 @@
   	<%= f.label :reference %><br />
     <%= f.text_field :reference %>
   </div>
-  <%= render 'add_artist_form' %>
-  <%= render 'add_source_form' %>	
+  <div id="Artist">
+  <%= render :partial => 'albums/add_artist_form' %>
+  <%= render :partial => 'albums/add_source_form' %>	
+  </div>
   <div class="field">
     <%= f.label :albumobtained, "Album Obtained" %><br />
     <%= f.check_box :albumobtained %>

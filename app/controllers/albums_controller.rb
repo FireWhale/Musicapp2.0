@@ -3,23 +3,23 @@ class AlbumsController < ApplicationController
   # GET /albums.json
   def index
     @albums = Album.all
-    @sorted = @albums.sort! { |a,b| a.name.downcase <=> b.name.downcase }
-    
+    if params[:sort].blank? or not Album.column_names.include? params[:sort]
+      params[:sort] = "name"
+    end
+    if @albums[0].is_a? String
+      @sorted = @albums.sort! {|a,b| a[params[:sort]].downcase <=> b[params[:sort].downcase]}
+    else
+      @sorted = @albums.sort! {|a,b| a[params[:sort]] <=> b[params[:sort]]}
+    end
+    #  @sorted = @albums.sort! { |a,b| a.name.downcase <=> b.name.downcase }
+    #  else
+    #  @sorted = @albums.sort! { |a,b| b.releasedate <=> a.releasedate }
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @albums }
     end
   end
-  
-  def indexb
-    @albums = Album.all
-    @sorted = @albums.sort! { |a,b| b.releasedate <=> a.releasedate }
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @albums }
-    end
-  end
+ 
   # GET /albums/1
   # GET /albums/1.json
   def show
@@ -30,6 +30,7 @@ class AlbumsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @album }
+      format.js
     end
   end
 
@@ -77,9 +78,11 @@ class AlbumsController < ApplicationController
       if @album.save
         format.html { redirect_to @album, :notice => 'Album was successfully created.' }
         format.json { render :json => @album, :status => :created, :location => @album }
+        format.js
       else
         format.html { render :action => "new" }
         format.json { render :json => @album.errors, :status => :unprocessable_entity }
+        format.js
       end
     end
   end

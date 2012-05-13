@@ -92,7 +92,7 @@ From:
 			d. Index								DONE
 			e. Deleting								DONE
 2. Programming Tasks
-	a. Activity/Obtained Functionality
+	a. Activity/Obtained Functionality				DONE
 	b. Add in Users?								REJECTED
 	c. Indices			
 	d. Viewer-Friendly Deployment
