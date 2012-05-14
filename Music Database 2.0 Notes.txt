@@ -97,6 +97,7 @@ From:
 	c. Indices			
 	d. Viewer-Friendly Deployment
 	e. Automated Parsing
+	f. Merge edit forms into _forms
 3. Design Tasks											
 	a. Relationship functionality into views 			DONE
 		1. Artist-Album									DONE

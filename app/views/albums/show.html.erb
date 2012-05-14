@@ -1,3 +1,10 @@
+<header>
+  <nav>
+  	<b>Album obtained:</b>
+  	<%= @album.albumobtained %>
+  </nav>
+</header>
+
 <p id="notice"><%= notice %></p>
 <% provide(:title, @album.name) %>
 
@@ -9,11 +16,6 @@
 <p>
   <b>Catalog Number:</b>
   <%= @album.catalognumber %>
-</p>
-
-<p>
-  <b>Album obtained:</b>
-  <%= @album.albumobtained %>
 </p>
 
 <%= link_to 'Edit', edit_album_path(@album) %>

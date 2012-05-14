@@ -57,7 +57,7 @@ class AlbumsController < ApplicationController
     @album = Album.find(params[:id])
     @artists = @album.artists
     @sources = @album.sources
-    @sourcesexists = @sources.dup
+    @title = "edit" 
   end
 
   # POST /albums
