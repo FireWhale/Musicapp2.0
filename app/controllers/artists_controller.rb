@@ -63,6 +63,7 @@ class ArtistsController < ApplicationController
     @artist = Artist.find(params[:id])
     @aliases = @artist.aliases
     @members = @artist.units
+    @title = "edit"
   end
 
   # POST /artists
