@@ -23,7 +23,7 @@
     <%= f.label :activity %><br />
     <%= f.text_field :activity %>
   </div>
-  <% if @title == "edit"%>
+  <% if @title == "edit" %>
 	<% if @aliases.empty? == false %>
 		Alias(es) (uncheck to remove):
 		<% @aliases.each do |each| %>

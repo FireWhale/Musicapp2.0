@@ -1,5 +1,19 @@
 <p id="notice"><%= notice %></p>
 
+<header>
+<nav>
+  <b>Activity:</b>
+  <%= @source.activity %>
+</br>
+  <b>Obtained:</b>
+  <% if @source.obtained == true %>
+    <%= image_tag("tick.png") %>
+  <% else %>
+  	<%= image_tag("cross.png")%>
+  <% end %>
+</nav>
+</header>
+
 <p>
   <b>Name:</b>
   <%= @source.name %>
@@ -10,18 +24,11 @@
   <b>Reference:</b>
   <%= @source.reference %>
 </p>
-<p>
-  <b>Activity:</b>
-  <%= @source.activity %>
-</p>
 
-<p>
-  <b>Obtained:</b>
-  <%= @source.obtained %>
-</p>
+<hr>
 
 <b>Album(s):</b></br>
-<table>
+<table id="AlbumTable">
 	<% @albums.each do |each| %>
 	<tr>
 		<td><%= link_to each.name, album_path(each) %></td>
@@ -34,5 +41,10 @@
 	<% end %>
 </table><hr>
 		
+<%= link_to_function 'Add an Album?', '$("#new_album").toggle();' %><br/>
+<% @albumformdisplay = "none" %>
+<%= render :partial => 'albums/form'%>
+
+<hr>
 
 <%= link_to "Delete Source?", @source, :method => :delete, :confirm => "You sure?" %>

@@ -145,12 +145,4 @@ class ArtistsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
-  def CreateAlbum
-    @album = Album.new
-    render 'form'
-    respond_to do |format|
-      format.js
-    end
-  end  
 end
