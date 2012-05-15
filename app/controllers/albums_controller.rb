@@ -45,6 +45,7 @@ class AlbumsController < ApplicationController
   # GET /albums/new.json
   def new
     @album = Album.new
+    @title = "new"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -85,9 +86,15 @@ class AlbumsController < ApplicationController
       if @album.save
         format.html { redirect_to @album, :notice => 'Album was successfully created.' }
         format.json { render :json => @album, :status => :created, :location => @album }
+        if params[:title] == "new"
+          format.js { js_redirect_to(album_path(@album))}
+        else
+          format.js {}           
+        end
       else
         format.html { render :action => "new" }
         format.json { render :json => @album.errors, :status => :unprocessable_entity }
+        format.js {}
       end
     end
   end
@@ -134,9 +141,11 @@ class AlbumsController < ApplicationController
       if @album.update_attributes(params[:album])
         format.html { redirect_to @album, :notice => 'Album was successfully updated.' }
         format.json { head :no_content }
+        format.js { js_redirect_to(album_path(@album))}
       else
         format.html { render :action => "edit" }
         format.json { render :json => @album.errors, :status => :unprocessable_entity }
+        format.js {}
       end
     end
   end

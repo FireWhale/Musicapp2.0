@@ -35,13 +35,15 @@ class ArtistsController < ApplicationController
         @artist.obtained = false
       end
     end
+    @artist.save
+    
     #For adding an Album under an Artist
     @album = Album.new
        
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @artist }
-      format.js
+      format.js {}
     end
   end
 
