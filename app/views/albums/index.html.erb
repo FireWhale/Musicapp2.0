@@ -1,11 +1,11 @@
 <header>
 	<nav>
 <% if params[:sort] != "releasedate" %>
-	<%= link_to ("Sort by Release date",albums_path(:sort => "releasedate")) %>
+	<%= link_to ("Sort by Release date", albums_path(:sort => "releasedate")) %>
 <% end %>
 <% if params[:sort] != "name" %>
-	<%= link_to ("Sort by Name",albums_path(:sort => "name")) %>
-<% nd %>
+	<%= link_to ("Sort by Name", albums_path(:sort => "name")) %>
+<% end %>
   	</nav>
 </header>
 
