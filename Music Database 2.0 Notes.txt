@@ -112,7 +112,7 @@ From:
 				3. Set Paginated View as default
 				4. Index pagination by Date?
 				5. Recently Added Index
-				6. Obtained Images
+				6. Obtained Images						DONE
 			b. Show
 				1. Design how it'll look 
 				2. Implement Design
@@ -123,10 +123,10 @@ From:
 			a. Index
 				1. Sorted Index (by name)				DONE
 				2. Index Pagination by Alphabet
-				3. Obtained/Activity Statuses
+				3. Obtained/Activity Statuses			DONE
 			b. Show
 				1. Design how it will look
-				2. Implement Add Album js
+				2. Implement Add Album js				DONE
 				3. Show albums for aliases
 				4. Arists under Source/Vice Versa
 			c. New/Create/Edit/Update

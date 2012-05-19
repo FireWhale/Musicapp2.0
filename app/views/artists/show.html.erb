@@ -48,13 +48,12 @@
 	<% end %><hr>
 <% end %>
 <% if @artist.reference.nil? == false %>
-<p>
-	<b>Reference:</b>
-	<%= link_to @artist.reference, @artist.reference %>
-</p>
+	<p>
+		<b>Reference:</b>
+		<%= link_to @artist.reference, @artist.reference %>
+	</p><hr>
 <% end %>
 
-<hr>
 
 <b>Albums:</b></br>
 <table id="AlbumTable">
