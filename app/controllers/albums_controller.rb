@@ -50,6 +50,7 @@ class AlbumsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @album }
+      format.js {}
     end
   end
 
@@ -161,4 +162,6 @@ class AlbumsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+
 end
