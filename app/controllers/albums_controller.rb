@@ -16,6 +16,10 @@ class AlbumsController < ApplicationController
       @sorted = @albums.sort! { |a,b| b.releasedate <=> a.releasedate }  
       @title = "Release Date"
     end
+    if params[:sort] == "created_at"
+      @sorted = @albums.sort! { |a,b| b.created_at <=> a.created_at }  
+      @title = "Added Date"
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @albums }
@@ -75,7 +79,7 @@ class AlbumsController < ApplicationController
       end   
     end
     if params[:source][:name].to_s.empty? == false #if there is a name there
-      @sourceexists = Source.find_by_name(params[:artist][:name])
+      @sourceexists = Source.find_by_name(params[:source][:name])
       if @sourceexists.nil? == true #if the source isn't in the database
         @album.sources.build(params[:source])
       else
