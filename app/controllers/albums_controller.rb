@@ -5,7 +5,7 @@ class AlbumsController < ApplicationController
     @albums = Album.all
     #Setting a default value for the params[:sort]
     if params[:sort].blank? or not Album.column_names.include? params[:sort]
-      params[:sort] = "name"
+      params[:sort] = "releasedate"
     end
     #Inserting values by each case: Name, Date, (Soon: By Alphabet!)
     if params[:sort] == "name"

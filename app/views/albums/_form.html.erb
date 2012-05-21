@@ -54,10 +54,6 @@ end
   
   <%= render :partial => 'albums/add_artist_form' %>
   
-  <%= link_to 'Add another Artist?', 'addartist', :remote => true %>
-  <div id="artist">
-  </div>
-  
   <% if @title == "edit" %>  
     Source(s) (uncheck to remove):
   	<% @sources.each do |each| %>
