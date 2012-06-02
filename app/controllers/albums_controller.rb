@@ -20,6 +20,10 @@ class AlbumsController < ApplicationController
       @sorted = @albums.sort! { |a,b| b.created_at <=> a.created_at }  
       @title = "Added Date"
     end
+    if params[:sort] == "publisher"
+      @sorted = @albums.sort! { |a,b| a.publisher <=> b.publisher }  
+      @title = "Publisher"
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @albums }
@@ -70,13 +74,17 @@ class AlbumsController < ApplicationController
   # POST /albums.json
   def create
     @album = Album.new(params[:album])
-    if params[:artist][:name].to_s.empty? == false #if there is a name there
-      @artistexists = Artist.find_by_name(params[:artist][:name])
-      if @artistexists.nil? == true #if the artist isn't in the database
-        @album.artists.build(params[:artist])
-      else
-        @album.artists << Artist.find_by_name(params[:artist][:name])
-      end   
+    #params[:artist] if statement
+    @paramsartist = params["artist"]
+    @paramsartist.each do |each|
+      if params[:artist][:name].to_s.empty? == false #if there is a name there
+        @artistexists = Artist.find_by_name(params[:artist][:name])
+        if @artistexists.nil? == true #if the artist isn't in the database
+          @album.artists.build(params[:artist])
+        else
+          @album.artists << Artist.find_by_name(params[:artist][:name])
+        end   
+      end
     end
     if params[:source][:name].to_s.empty? == false #if there is a name there
       @sourceexists = Source.find_by_name(params[:source][:name])
@@ -166,6 +174,4 @@ class AlbumsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
-
 end

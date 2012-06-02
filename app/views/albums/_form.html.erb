@@ -3,7 +3,7 @@
 end
 %>
 
-<%= form_for(@album, :html => {:style => "display: " + @albumformdisplay}, :remote => true, :id=>"AddAlbumForm") do |f| %>
+<%= form_for(@album, :html => {:style => "display: " + @albumformdisplay}, :remote => false, :id=>"AddAlbumForm") do |f| %>
   <% if @album.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
@@ -53,7 +53,10 @@ end
   <% end %>
   
   <%= render :partial => 'albums/add_artist_form' %>
-  
+	
+  <div id="AddArtistField"></div>
+  <%= link_to "Add another Artist Field", 'addartistform', :remote => true %></br></br>
+	
   <% if @title == "edit" %>  
     Source(s) (uncheck to remove):
   	<% @sources.each do |each| %>
@@ -65,16 +68,23 @@ end
     <% end %>
   <% end %>
   
-  <%= render :partial => 'albums/add_source_form' %>	
+  <%= render :partial => 'albums/add_source_form' %>
   
-  <div class="field">
-    <%= f.label :albumobtained, "Album Obtained" %><br />
-    <%= f.check_box :albumobtained %>
-  </div>
+  <div id="AddSourceField"></div>	
+  <%= link_to "Add another Source Field", 'addsourceform', :remote => true %></br></br>  
+  
+  <%= fields_for(:album) do |f| %>   
+    <div class="field">
+      <%= f.label :albumobtained, "Album Obtained" %><br />
+      <%= f.check_box :albumobtained %>
+    </div>
+  <% end %>
+  
   <% if @title == "new"%>
    <%= hidden_field_tag(:title, "new")%>
   <% end %>
+  
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save Album" %>
   </div>
 <% end %>

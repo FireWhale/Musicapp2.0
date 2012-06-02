@@ -9,6 +9,9 @@
 <% if params[:sort] != "created_at" %>
 	<%= link_to "Sort by Added date", albums_path(:sort => "created_at") %></br>
 <% end %>
+<% if params[:sort] != "publisher" %>
+	<%= link_to "Sort by Publisher", albums_path(:sort => "publisher") %></br>
+<% end %>
   	</nav>
 </header>
 
@@ -17,21 +20,23 @@
 
 <table id="AlbumTable">
   <tr>
+    <th>Have?</th>
     <th>Name</th>
     <th>Release Date</th>
-    <th>Album Obtained?</th>
+    <th>Catalog Number</th>
     <th>Source</th>
   </tr>
 
 <% @sorted.each do |each| %>
   <tr>
-    <td><%= link_to each.name, each %></td>
-    <td><%= each.releasedate %></td>
 	<% if each.albumobtained == true%>
 		<td><%= image_tag("tick.png") %></td>
 	<% else %>
 		<td><%= image_tag("cross.png")%></td>
 	<% end %>
+    <td><%= link_to each.name, each %></td>
+    <td><%= each.releasedate %></td>
+    <td><%= each.catalognumber %></td>
 	<td><% @sources = each.sources %>
 		<% @sources.each do |each| %>
 				<%= link_to each.name, source_path(each) %></br>
