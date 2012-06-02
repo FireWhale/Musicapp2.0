@@ -75,25 +75,26 @@ class AlbumsController < ApplicationController
   def create
     @album = Album.new(params[:album])
     #params[:artist] if statement
-    @paramsartist = params["artist"]
-    @paramsartist.each do |each|
-      if params[:artist][:name].to_s.empty? == false #if there is a name there
-        @artistexists = Artist.find_by_name(params[:artist][:name])
-        if @artistexists.nil? == true #if the artist isn't in the database
-          @album.artists.build(params[:artist])
+    params["artistnames"].each do |each|
+      if each.empty? == false
+        @artistexists = Artist.find_by_name(each)
+        if @artistexists.nil? == true
+          @album.artists.build(:name => each)
         else
-          @album.artists << Artist.find_by_name(params[:artist][:name])
-        end   
+          @album.artists << Artist.find_by_name(each)
+        end
       end
     end
-    if params[:source][:name].to_s.empty? == false #if there is a name there
-      @sourceexists = Source.find_by_name(params[:source][:name])
-      if @sourceexists.nil? == true #if the source isn't in the database
-        @album.sources.build(params[:source])
-      else
-        @album.sources << Source.find_by_name(params[:source][:name])
-      end   
-    end    
+    params["sourcenames"].each do |each|
+      if each.empty? == false
+        @artistexists = Source.find_by_name(each)
+        if @artistexists.nil? == true
+          @album.sources.build(:name => each)
+        else
+          @album.sources << Source.find_by_name(each)
+        end
+      end
+    end
 
     respond_to do |format|
       if @album.save
@@ -125,12 +126,14 @@ class AlbumsController < ApplicationController
       end
     end
     #Creating an Artist Association
-    if params[:artist][:name].to_s.empty? == false #Adding an artist Statement
-      @artistexists = Artist.find_by_name(params[:artist][:name])
-      if @artistexists.nil? == true
-        @album.artists.build(params[:artist])
-      else
-        @album.artists << Artist.find_by_name(params[:artist][:name])   
+    params["artistnames"].each do |each|
+      if each.empty? == false
+        @artistexists = Artist.find_by_name(each)
+        if @artistexists.nil? == true
+          @album.artists.build(:name => each)
+        else
+          @album.artists << Artist.find_by_name(each)
+        end
       end
     end
     #Deleting Associated Sources
@@ -142,14 +145,17 @@ class AlbumsController < ApplicationController
       end
     end
     #Creating A Source Association
-    if params[:source][:name].to_s.empty? == false #Adding an source Statement
-      @sourceexists = Source.find_by_name(params[:source][:name])
-      if @sourceexists.nil? == true
-        @album.sources.build(params[:source])
-      else
-        @album.sources << Source.find_by_name(params[:source][:name])   
+    params["sourcenames"].each do |each|
+      if each.empty? == false
+        @artistexists = Source.find_by_name(each)
+        if @artistexists.nil? == true
+          @album.sources.build(:name => each)
+        else
+          @album.sources << Source.find_by_name(each)
+        end
       end
     end
+    
     respond_to do |format|
       if @album.update_attributes(params[:album])
         format.html { redirect_to @album, :notice => 'Album was successfully updated.' }
