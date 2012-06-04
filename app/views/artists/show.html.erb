@@ -28,10 +28,12 @@
 <% end %>
 
 <% if @aliases.empty? == false %>
-	Alias(es):
+	<b>Alias(es):</b>
 	<% @aliases.each do |each| %>
-		<% @artistalias = Artist.find_by_id(each.alias_id) %>
-		<p>	<%= link_to @artistalias.name, artist_path(@artistalias.id) %>	</p>
+		<tr>
+			<% @artistalias = Artist.find_by_id(each.alias_id) %>
+			<td><%= link_to @artistalias.name, artist_path(@artistalias.id) %></td>
+		</tr>
 	<% end %><hr>
 <% end %>
 
@@ -41,11 +43,16 @@
 	</p><hr>
 <% end %>
 <% if @members.empty? == false %>
-	Member(s):
+	<b>Member(s):</b>
+	<table>
 	<% @members.each do |each| %>
-		<% @artistmember = Artist.find_by_id(each.member_id) %>
-		<p>	<%= link_to @artistmember.name, artist_path(@artistmember.id) %>	</p>
-	<% end %><hr>
+		<tr>
+			<% @artistmember = Artist.find_by_id(each.member_id) %>
+			<td><%= link_to @artistmember.name, artist_path(@artistmember.id) %></td>
+		</tr>
+	<% end %>
+	</table>
+	<hr>
 <% end %>
 <% if @artist.reference.nil? == false %>
 	<p>

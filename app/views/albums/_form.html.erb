@@ -55,7 +55,7 @@ end
   <%= render :partial => 'albums/add_artist_form' %>
  
   <div id="AddArtistField"></div>
-  <%= link_to "Add another Artist Field", 'addartistform', :remote => true %></br></br>
+  <%= link_to "Add another Artist Field", addartistform_path, :remote => true %></br></br>
 	
   <% if @title == "edit" %>  
     Source(s) (uncheck to remove):
@@ -71,7 +71,7 @@ end
   <%= render :partial => 'albums/add_source_form' %>
   
   <div id="AddSourceField"></div>	
-  <%= link_to "Add another Source Field", 'addsourceform', :remote => true %></br></br>  
+  <%= link_to "Add another Source Field", addsourceform_path, :remote => true %></br></br>  
   
   <%= fields_for(:album) do |f| %>   
     <div class="field">

@@ -99,12 +99,14 @@ class ArtistsController < ApplicationController
     if params[:alias][:name].to_s.empty? == false
       @alias = Artist.find_by_name(params[:alias][:name])
       if @alias.nil? == false
-      @artist.aliases.build(:alias_id => @alias.id).save
+        @artist.aliases.build(:alias_id => @alias.id).save
       else
-        flash[:success] = "Alias Association Failed! Could not find artist to associate"
+        @aliasnew = Artist.new(params[:alias])
+        @aliasnew.save
+        @artist.aliases.build(:alias_id => @aliasnew.id).save
       end
     end
-    #Deleting an Alias Association
+    #Deleting a Unit Association
     @unitsdup = @artist.units.dup
     @unitsdup.each do |each|
       @existence = Artist.find_by_id(each.member_id).name
@@ -113,13 +115,15 @@ class ArtistsController < ApplicationController
         @memberdel.delete.save
       end
     end
-    #Creating An Alias Association
+    #Creating a Unit Association
     if params[:member][:name].to_s.empty? == false
       @member = Artist.find_by_name(params[:member][:name])
       if @member.nil? == false
-      @artist.units.build(:member_id => @member.id).save
+        @artist.units.build(:member_id => @member.id).save
       else
-        flash[:success] = "Alias Association Failed! Could not find artist to associate"
+        @membernew = Artist.new(params[:unit])
+        @membernew.save
+        @artist.units.build(:member_id => @membernew.id).save
       end
     end
 
@@ -138,6 +142,7 @@ class ArtistsController < ApplicationController
   # DELETE /artists/1.json
   def destroy
     @artist = Artist.find(params[:id])
+    @aliases = 
     @artist.destroy
 
     respond_to do |format|

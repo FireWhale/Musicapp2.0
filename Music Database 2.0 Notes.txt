@@ -118,7 +118,7 @@ From:
 				2. Implement Design
 				3. Images?
 			c. New/Create/Edit/Update
-				1. Javascript functionality
+				1. Javascript functionality				DONE
 		2. Artist/Source
 			a. Index
 				1. Sorted Index (by name)				DONE
@@ -131,6 +131,8 @@ From:
 				4. Arists under Source/Vice Versa
 			c. New/Create/Edit/Update
 				1. Alias/Unit js functionality
+				2. Create artist through alias/unit		DONE
+				3. Deleting alias/unit records			
 4. Database Tasks
 	a. Create unit/alias Associations
 	b. Catalog Numbers			
@@ -141,7 +143,17 @@ Activity/Obtained Theory
 		1. Use a drop-down menu
 	b. Obtained is boolean
 		1. Have it set using album data
-	c. maybe need another attribute: date last modified?
+	c. maybe need another attribute: date last checked?
+	Albums are simple: obtained or not
+	Artists: Activity is either "up to date(date)" or not
+		If activity is up to date and all albums are obtained, then obtained is set to true
+		If activity is up to date and all albums are not obtained, then obtained is set to false
+		If activity is not up to date, then obtained is set to false
+Simple to-do list for phase 2:
+	Implement activity/obtained for artists/sources
+	Delete join table records when I delete an artist
+	Pagination
+	Keep working on the Database itself
 		
 
 
