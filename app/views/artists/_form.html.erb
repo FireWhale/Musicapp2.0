@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :activity %><br />
-    <%= f.select :activity, [['Up to Date', 'Up to Date'], ['Not Up to Date', 'Not Up to Date']], :selected => 'Not Up to Date' %>
+    <%= f.select :activity, [['Up to Date', 'Up to Date'], ['Not Up to Date', 'Not Up to Date']], :include_blank => true %>
   </div>
   <% if @title == "edit" %>
 	<% if @aliases.empty? == false %>
