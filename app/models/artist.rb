@@ -1,5 +1,5 @@
 class Artist < ActiveRecord::Base
-  attr_accessible :name, :activity, :obtained, :reference
+  attr_accessible :name, :activity, :obtained, :reference, :database_activity
   
   has_and_belongs_to_many :albums
   has_many :aliases, :foreign_key => "parent_id", :dependent => :destroy

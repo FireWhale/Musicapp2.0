@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120508160950) do
+ActiveRecord::Schema.define(:version => 20120606185101) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -18,56 +18,54 @@ ActiveRecord::Schema.define(:version => 20120508160950) do
     t.string   "genre"
     t.string   "publisher"
     t.boolean  "albumobtained"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "reference"
     t.string   "catalognumber"
   end
 
   create_table "albums_artists", :id => false, :force => true do |t|
-    t.integer  "album_id"
-    t.integer  "artist_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer "album_id"
+    t.integer "artist_id"
   end
 
   create_table "albums_sources", :id => false, :force => true do |t|
-    t.integer  "album_id"
-    t.integer  "source_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer "album_id"
+    t.integer "source_id"
   end
 
   create_table "aliases", :force => true do |t|
     t.integer  "parent_id"
     t.integer  "alias_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "artists", :force => true do |t|
     t.string   "name"
     t.string   "activity"
     t.boolean  "obtained"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "reference"
+    t.string   "database_activity"
   end
 
   create_table "sources", :force => true do |t|
     t.string   "name"
     t.string   "activity"
     t.boolean  "obtained"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "reference"
+    t.string   "database_activity"
   end
 
   create_table "units", :force => true do |t|
     t.integer  "unit_id"
     t.integer  "member_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

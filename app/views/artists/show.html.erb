@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<% provide(:title, @artist.name) %>
 
 <header>
 <nav>
@@ -27,14 +28,17 @@
 	</p><hr>
 <% end %>
 
+
 <% if @aliases.empty? == false %>
 	<b>Alias(es):</b>
+	<table>
 	<% @aliases.each do |each| %>
 		<tr>
 			<% @artistalias = Artist.find_by_id(each.alias_id) %>
 			<td><%= link_to @artistalias.name, artist_path(@artistalias.id) %></td>
 		</tr>
-	<% end %><hr>
+	<% end %>
+	</table><hr>
 <% end %>
 
 <% if @unitmember.nil? == false %>
@@ -82,7 +86,7 @@
 
 <hr>
 
-<%= link_to "delete artist?", @artist, :method => :delete, :confirm => "You sure?"%>
+<%= link_to "Delete Artist?", @artist, :method => :delete, :confirm => "You sure?"%>
 
 
 
