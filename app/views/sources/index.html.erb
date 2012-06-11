@@ -4,15 +4,15 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Database</th>
     <th>Activity</th>
-    <th>Obtained</th>
   </tr>
 
 <% @sourcessorted.each do |source| %>
   <tr>
     <td><%= link_to source.name, source %></td>
+    <td><%= source.database_activity %></td>
     <td><%= source.activity %></td>
-    <td><%= source.obtained %></td>
   </tr>
 <% end %>
 </table>
