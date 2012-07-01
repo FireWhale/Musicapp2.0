@@ -39,6 +39,8 @@ class AlbumsController < ApplicationController
   # GET /albums/1
   # GET /albums/1.json
   def show
+    require 'open-uri' #for screen scraping
+    
     @album = Album.find(params[:id])
     @artists = @album.artists
     @sources = @album.sources
@@ -47,6 +49,27 @@ class AlbumsController < ApplicationController
       format.html # show.html.erb
       format.json { render :json => @album }
     end
+    
+    #adding in automation functionality
+    # if @album.catalognumber.blank? == true 
+      # url = @album.reference
+      # if url.split('/')[2] == "vgmdb.net"
+      # doc = Nokogiri::HTML(open(url))
+      # @catalognum = doc.xpath("//table[@id='album_infobit_large']//tr[1]//td[2]").text
+      # @album.catalognumber = @catalognum.split(' ')[0]
+      # @album.save
+      # end
+    # end
+
+  end
+  
+  def nokogiri
+    require 'open-uri'
+    
+    url = "http://vgmdb.net/album/33722"
+    doc = Nokogiri::HTML(open(url))
+    @catalognumber = doc.xpath("//table[@id='album_infobit_large']//tr[1]//td[2]").text
+    
   end
 
   # GET /albums/new
@@ -73,6 +96,7 @@ class AlbumsController < ApplicationController
   # POST /albums
   # POST /albums.json
   def create
+    
     @album = Album.new(params[:album])
     #params[:artist] if statement
     params["artistnames"].each do |each|
@@ -95,7 +119,16 @@ class AlbumsController < ApplicationController
         end
       end
     end
-
+    
+    if params[:album][:catalognumber].blank? == true 
+      url = params[:album][:reference]
+      if url.split('/')[2] == "vgmdb.net"
+      doc = Nokogiri::HTML(open(url))
+      @catalognum = doc.xpath("//table[@id='album_infobit_large']//tr[1]//td[2]").text
+      @album.catalognumber = @catalognum.split(' ')[0]
+      end
+    end
+    
     respond_to do |format|
       if @album.save
         format.html { redirect_to @album, :notice => 'Album was successfully created.' }

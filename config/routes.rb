@@ -14,6 +14,7 @@ MusicApp20::Application.routes.draw do
   match '/editalbum', :to => 'albums#edit'
   match '/addartistform', :to => 'albums#addartistform'
   match '/addsourceform', :to => 'albums#addsourceform'
+  match '/nokogiri', :to => 'albums#nokogiri'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
